@@ -1,1 +1,2 @@
 - RVM with ruby 2.7.0
+- Node.js > 18
