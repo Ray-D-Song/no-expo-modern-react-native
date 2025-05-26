@@ -1,9 +1,11 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "lib": ["DOM"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "types": ["react-native-web"]
   }
 }

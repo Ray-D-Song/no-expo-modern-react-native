@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '~/components/ui/text';
 import ToggleTheme from '~/components/toggle-theme';
 
 export default function SettingsScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text className='text-red-500 text-2xl'>Settings Screen</Text>
+      <Text>Settings Screen</Text>
       <ToggleTheme />
     </View>
   );

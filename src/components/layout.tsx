@@ -2,19 +2,12 @@ import { NavigationContainer, Theme, DefaultTheme, DarkTheme } from '@react-navi
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { useColorScheme } from '../lib/useColorScheme';
-import { NAV_THEME } from '../lib/constants';
-import HomeScreen from '../pages/home';
-import SettingsScreen from '../pages/setting';
+import { useColorScheme } from '~/lib/useColorScheme';
+import { NAV_THEME } from '~/lib/constants';
+import HomeScreen from '~/pages/home';
+import SettingsScreen from '~/pages/setting';
 
 // 为 Web 平台声明全局变量类型
-declare global {
-  interface Window {}
-  interface Document {
-    documentElement: HTMLElement;
-  }
-}
-
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
   colors: NAV_THEME.light,
@@ -29,7 +22,7 @@ const Tab = createBottomTabNavigator();
 
 export default function RootLayout() {
   const hasMounted = React.useRef(false);
-  const { isDarkColorScheme } = useColorScheme();
+  const { isDarkColorScheme, colorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
   useIsomorphicLayoutEffect(() => {
@@ -37,8 +30,7 @@ export default function RootLayout() {
       return;
     }
 
-    if (Platform.OS === 'web' && typeof document !== 'undefined') {
-      // 添加背景色到 html 元素以防止过度滚动时出现白色背景
+    if (Platform.OS === 'web') {
       document.documentElement?.classList?.add('bg-background');
     }
     setIsColorSchemeLoaded(true);
