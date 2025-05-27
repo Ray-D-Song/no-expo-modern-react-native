@@ -70,7 +70,7 @@ function Button({ ref, className, variant, size, ...props }: ButtonProps) {
           buttonVariants({ variant, size, className })
         )}
         ref={ref}
-        role='button'
+        role="button"
         {...props}
       />
     </TextClassContext.Provider>

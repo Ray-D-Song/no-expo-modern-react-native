@@ -5,7 +5,7 @@ import ToggleTheme from '~/components/toggle-theme';
 
 export default function SettingsScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View className="flex-1 items-center justify-center">
       <Text>Settings Screen</Text>
       <ToggleTheme />
     </View>

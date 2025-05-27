@@ -6,8 +6,9 @@ import { useColorScheme } from '~/lib/useColorScheme';
 import { NAV_THEME } from '~/lib/constants';
 import HomeScreen from '~/pages/home';
 import SettingsScreen from '~/pages/setting';
+import { useTranslation } from 'react-i18next';
+import { Home, Settings } from 'lucide-react-native';
 
-// 为 Web 平台声明全局变量类型
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
   colors: NAV_THEME.light,
@@ -22,8 +23,9 @@ const Tab = createBottomTabNavigator();
 
 export default function RootLayout() {
   const hasMounted = React.useRef(false);
-  const { isDarkColorScheme, colorScheme } = useColorScheme();
+  const { isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+  const { t } = useTranslation();
 
   useIsomorphicLayoutEffect(() => {
     if (hasMounted.current) {
@@ -45,18 +47,24 @@ export default function RootLayout() {
     <NavigationContainer theme={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar barStyle={isDarkColorScheme ? 'light-content' : 'dark-content'} />
       <Tab.Navigator>
-        <Tab.Screen 
-          name="Home" 
+        <Tab.Screen
+          name="Home"
           component={HomeScreen}
           options={{
-            title: '首页',
+            title: t('home'),
+            tabBarIcon: ({ color, focused }) => (
+              <Home color={color} size={focused ? 28 : 24} />
+            ),
           }}
         />
-        <Tab.Screen 
-          name="Settings" 
+        <Tab.Screen
+          name="Settings"
           component={SettingsScreen}
           options={{
-            title: '设置',
+            title: t('settings'),
+            tabBarIcon: ({ color, focused }) => (
+              <Settings color={color} size={focused ? 28 : 24} />
+            ),
           }}
         />
       </Tab.Navigator>

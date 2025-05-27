@@ -1,27 +1,24 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import enUS from '~/locales/en-US';
+import zhCN from '~/locales/zh-CN';
 
 const resources = {
   en: {
-    translation: {
-      "Welcome to React": "Welcome to React and react-i18next"
-    }
+    translation: enUS,
   },
   zh: {
-    translation: {
-      "Welcome to React": "欢迎来到 React 和 react-i18next"
-    }
-  }
+    translation: zhCN,
+  },
 };
 
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en",
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
   export default i18n;
