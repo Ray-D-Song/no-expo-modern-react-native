@@ -216,3 +216,10 @@ cd android
 ### 4. 原生模块没有自动链接
 自动链接过程发生在 `npx react-native android` 命令执行时。  
 所以如果你选择在 Android Studio 中运行原生程序，那么自动链接不会发生。  
+
+### 5. 原生调试时，报错连不上 metro 服务器？
+需要先运行 `adb reverse tcp:8081 tcp:8081` 将本地运行的 metro 开发服务器反向代理
+```bash
+adb reverse tcp:8081 tcp:8081
+```
+
