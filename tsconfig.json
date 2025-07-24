@@ -6,6 +6,6 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "types": ["react-native-web"]
+    "types": ["react-native-web", "nativewind/types"]
   }
 }
