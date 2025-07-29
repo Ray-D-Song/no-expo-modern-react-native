@@ -9,7 +9,7 @@ export default function App() {
   return (
     <AuthProvider>
       <SWRConfig value={{ provider: () => new Map() }}>
-        <GestureHandlerRootView>
+        <GestureHandlerRootView className='bg-background'>
           <RootLayout />
         </GestureHandlerRootView>
       </SWRConfig>

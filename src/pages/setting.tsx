@@ -4,9 +4,9 @@ import { Button } from '~/components/ui/button';
 import { useAuth } from '~/hooks/useAuth';
 import ToggleTheme from '~/components/toggle-theme';
 import { Text } from '~/components/ui/text';
-import { Picker } from '@react-native-picker/picker';
-import { useState } from 'react';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { useState, useRef } from 'react';
+import BottomSheet from '@gorhom/bottom-sheet';
+import BottomPicker from '~/components/bottom-picker';
 
 function Item({ children, label, value }: { children?: React.ReactNode, label: string, value?: string | number }) {
   return (
@@ -20,6 +20,7 @@ function Item({ children, label, value }: { children?: React.ReactNode, label: s
 export default function SettingsScreen() {
   const { user, logout } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState('java');
+  const languagePickerRef = useRef<BottomSheet>(null);
 
   const handleLogout = () => {
     Alert.alert(
@@ -45,16 +46,14 @@ export default function SettingsScreen() {
           <ToggleTheme />
         </Item>
         <Item label="语言">
-          <Text>good</Text>
+          <Button
+            onPress={() => languagePickerRef.current?.expand()}
+            variant="ghost"
+            className="p-0"
+          >
+            <Text>{selectedLanguage === 'java' ? 'Java' : 'JavaScript'}</Text>
+          </Button>
         </Item>
-          <Picker
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
       </View>
 
       <View className="mt-auto mb-8">
@@ -65,6 +64,16 @@ export default function SettingsScreen() {
           <Text>退出登录</Text>
         </Button>
       </View>
+
+      <BottomPicker
+        ref={languagePickerRef}
+        options={[
+          { label: 'Java', value: 'java' },
+          { label: 'JavaScript', value: 'js' }
+        ]}
+        selectedValue={selectedLanguage}
+        onValueChange={(value) => setSelectedLanguage(value as string)}
+      />
     </View>
   );
 }

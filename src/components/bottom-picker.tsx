@@ -1,6 +1,7 @@
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
 import { useRef, useImperativeHandle, forwardRef } from 'react'
 import { Picker } from '@react-native-picker/picker';
+import { Text, View } from 'react-native'
 
 type Options = {
   label: string
@@ -17,7 +18,7 @@ const BottomPicker = forwardRef<BottomSheet, BottomPickerProps>(({
   options,
   selectedValue,
   onValueChange,
-}: BottomPickerProps,  ref) => {
+}: BottomPickerProps, ref) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   useImperativeHandle(ref, () => bottomSheetRef.current!, []);
 
@@ -26,17 +27,20 @@ const BottomPicker = forwardRef<BottomSheet, BottomPickerProps>(({
       ref={bottomSheetRef}
     >
       <BottomSheetView>
-        <Picker
-          selectedValue={selectedValue}
-          onValueChange={(itemValue, itemIndex) =>
-            onValueChange(itemValue)
-          }>
-          {
-            options.map((option) => (
-              <Picker.Item key={option.value} label={option.label} value={option.value} />
-            ))
-          }
-        </Picker>
+        <View className='bg-background'>
+          <Picker
+            selectedValue={selectedValue}
+            onValueChange={(itemValue, itemIndex) =>
+              onValueChange(itemValue)
+            }
+          >
+            {
+              options.map((option) => (
+                <Picker.Item key={option.value} label={option.label} value={option.value} />
+              ))
+            }
+          </Picker>
+        </View>
       </BottomSheetView>
     </BottomSheet>
   )
