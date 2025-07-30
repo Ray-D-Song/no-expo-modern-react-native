@@ -1,4 +1,6 @@
 export default {
+  confirm: '确认',
+  cancel: '取消',
   helloReactNative: 'Hello, React Native',
   home: '首页',
   settings: '设置',

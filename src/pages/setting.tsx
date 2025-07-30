@@ -51,7 +51,7 @@ export default function SettingsScreen() {
             variant="ghost"
             className="p-0"
           >
-            <Text>{selectedLanguage === 'java' ? 'Java' : 'JavaScript'}</Text>
+            <Text>{selectedLanguage}</Text>
           </Button>
         </Item>
       </View>
@@ -68,11 +68,11 @@ export default function SettingsScreen() {
       <BottomPicker
         ref={languagePickerRef}
         options={[
-          { label: 'Java', value: 'java' },
-          { label: 'JavaScript', value: 'js' }
+          { label: 'java', value: 'java' },
+          { label: 'js', value: 'js' }
         ]}
-        selectedValue={selectedLanguage}
-        onValueChange={(value) => setSelectedLanguage(value as string)}
+        initValue={selectedLanguage}
+        onConfirm={(value) => setSelectedLanguage(value as string)}
       />
     </View>
   );
